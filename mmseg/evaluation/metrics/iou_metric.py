@@ -157,6 +157,13 @@ class IoUMetric(BaseMetric):
 
         print_log('per class results:', logger)
         print_log('\n' + class_table_data.get_string(), logger=logger)
+        
+        for i, cls in enumerate(ret_metrics_class['Class']):
+            for metric_name in ret_metrics_class.keys():
+                if metric_name == 'Class':
+                    continue
+                key = f'{metric_name}({cls})'
+                metrics[key] = ret_metrics_class[metric_name][i]
 
         return metrics
 
