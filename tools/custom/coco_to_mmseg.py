@@ -114,6 +114,7 @@ def main():
     parser.add_argument(
         "--mmseg_data_dir", required=True, help="output mmseg dataset directory"
     )
+    parser.add_argument("--subset", default="training", help="subset name")
 
     parser.add_argument(
         "--ignore_empty",
@@ -123,9 +124,9 @@ def main():
 
     args = parser.parse_args()
 
-    output_img_dir = os.path.join(args.mmseg_data_dir, "images")
+    output_img_dir = os.path.join(args.mmseg_data_dir, "images", args.subset)
 
-    output_ann_dir = os.path.join(args.mmseg_data_dir, "annotations")
+    output_ann_dir = os.path.join(args.mmseg_data_dir, "annotations", args.subset)
 
     os.makedirs(output_img_dir, exist_ok=True)
     os.makedirs(output_ann_dir, exist_ok=True)
