@@ -40,7 +40,7 @@ x = [
     ("output", "/psp_modules/psp_modules.3/psp_modules.3.0/RandomUniform_output_0"),
 ]
 
-expr_dir = "../../experiments/sly_oilleak_20251010_v7.4.3-b-384"
+expr_dir = "../../deliverables/oilleak-20260615/oilleak-seg/v1"
 patchs = [
     f"{expr_dir}/aap1.onnx",
     f"{expr_dir}/aap2.onnx",
@@ -56,6 +56,7 @@ for i in range(4):
         model1 = remove_noop_attribute(patchs[i], patchs[i])
 
     model2 = onnx.load(main_model)
+    model1.ir_version = model2.ir_version
     io_map = [x[i]]
     model2 = onnx.compose.merge_models(model1, model2, io_map, prefix1=f"patch{i}_")
     main_model = f'{expr_dir}/segmentation-oilleak-b-384-512-910-patch{i}.onnx'
@@ -77,3 +78,5 @@ graph.input.extend(inputs)
 
 main_model = f'{expr_dir}/segmentation-oilleak-b-384-512-910-last.onnx'
 onnx.save(model2, main_model)
+
+print("DONE, next call sortgraph.py")

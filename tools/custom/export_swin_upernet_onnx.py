@@ -127,6 +127,7 @@ def main():
                 model.model.decode_head.psp_modules[3][0] = pool
 
         print(model)
+        # need onnx 1.16.1
         torch.onnx.export(
             model,
             (inputs,),
@@ -137,7 +138,7 @@ def main():
             external_data=False,
         )
 
-    print("DONE")
+    print("DONE, next call mark_insert_point.py")
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 import onnx_graphsurgeon as gs
 import onnx
 
-expr_dir = "../../experiments/sly_oilleak_20251010_v7.4.3-b-384"
+expr_dir = "../../deliverables/oilleak-20260615/oilleak-seg/v1"
 model = onnx.load(f'{expr_dir}/segmentation-oilleak-b-384-512-910-last.onnx')
 
 nodes = list(model.graph.node)

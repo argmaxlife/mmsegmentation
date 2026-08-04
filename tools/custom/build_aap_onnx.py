@@ -12,7 +12,7 @@ class Model(torch.nn.Module):
 
 x = torch.rand(1, 1024, 16, 29)
 # x = torch.rand(1, 1024, 16, 16)
-expr_dir = "../../experiments/sly_oilleak_20251010_v7.4.3-b-384"
+expr_dir = "../../deliverables/oilleak-20260615/oilleak-seg/v1"
 
 for output_size in [1, 2, 3, 6]:
     export_path = f"{expr_dir}/aap{output_size}.onnx"

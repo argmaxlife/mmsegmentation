@@ -12,7 +12,7 @@ shapes = [
     [1, 1024, 1, 1], [1, 1024, 2, 2], [1, 1024, 3, 3], [1, 1024, 6, 6],
 ]
 
-expr_dir = "../../experiments/sly_oilleak_20251010_v7.4.3-b-384"
+expr_dir = "../../deliverables/oilleak-20260615/oilleak-seg/v1"
 model = gs.import_onnx(onnx.load(f'{expr_dir}/segmentation-oilleak-b-384-512-910.onnx'))
 
 nodes = [n for n in model.nodes if n.name in names]
@@ -35,3 +35,5 @@ for node in nodes:
     model.nodes.remove(node)
 
 onnx.save(gs.export_onnx(model), f'{expr_dir}/segmentation-oilleak-b-384-512-910-marked.onnx')
+
+print("DONE, next call insert_aap_onnx.py")
